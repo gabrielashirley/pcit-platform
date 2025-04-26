@@ -4,6 +4,9 @@ import "./globals.css";
 import { Header } from "@/components/header"
 import type { ReactNode } from "react"
 import { Providers } from "./providers"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarWrapper } from "@/components/sidebar_wrapper"; // NEW
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,14 +18,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <Providers>
-        <body className={"font-sans antialiased"}>
-          <Header />
-          {children}
-        </body>
-      </Providers>
-    </html>
+          <body className="font-sans antialiased bg-gray-50">
+            <Providers>
+
+                <Header />
+                <div className="flex">
+                  <main className="flex-1 p-6">
+                    {children}
+
+                  </main>
+                </div>
+            </Providers>
+          </body>
+        </html>
   );
 }

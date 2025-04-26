@@ -1,7 +1,14 @@
 import { pgTable, serial, varchar, timestamp, integer } from "drizzle-orm/pg-core";
+import { boolean, text, uuid } from "drizzle-orm/pg-core"
+
+// import { users } from "./auth"
+import { relations } from "drizzle-orm"
+// import { createSelectSchema, createInsertSchema } from "drizzle-zod"
+import { z } from "zod"
+
 
 export const sessions = pgTable('sessions', {
-  id: serial('id').primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom(),
   userId: varchar('user_id', { length: 255 }).notNull(),
   date: timestamp('date').defaultNow(),
   praise: integer('praise').default(0),
