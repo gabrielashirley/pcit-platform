@@ -5,13 +5,15 @@ import { drizzle as neonDrizzle } from 'drizzle-orm/neon-serverless';
 import { WebSocket } from 'ws';
 import { Pool as PgPool } from 'pg';
 import { drizzle as pgDrizzle } from 'drizzle-orm/node-postgres';
+import type { NeonDatabase } from 'drizzle-orm/neon-serverless';
+import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 import * as schema from './schema';
 
 const connectionString =
   process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : process.env.LOCAL_DATABASE_URL;
 
-let db;
+let db: NeonDatabase<typeof schema> | NodePgDatabase<typeof schema>;
 if (process.env.NODE_ENV === 'production') {
   neonConfig.webSocketConstructor = WebSocket;
   neonConfig.poolQueryViaFetch = true;

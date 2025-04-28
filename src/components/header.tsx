@@ -12,7 +12,7 @@ export async function Header() {
                         PCIT Clinicians Platform
                     </Link>
                     <nav className="flex items-center gap-2">
-                        <Link href="/summary">
+                        <Link href="/caregivers">
                             <Button variant="ghost">Logs</Button>
                         </Link>
                     </nav>
