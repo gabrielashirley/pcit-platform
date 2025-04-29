@@ -7,8 +7,8 @@ import { z } from "zod"
 import { pgEnum } from "drizzle-orm/pg-core";
 
 
-export const speakerType = pgEnum('speaker_type', ['parent', 'child']);
-export const skillType = pgEnum('speaker_type', ['LP','R', 'BD', 'Q', 'COM', 'CRI', 'NTA' ]);
+// export const speakerType = pgEnum('speaker_type', ['parent', 'child']);
+export const skillType = pgEnum('skilltype', ['LP','R', 'BD', 'Q', 'COM', 'CRI', 'NTA' ]);
 
 
 export const utterances = pgTable("utterances", {
@@ -16,7 +16,7 @@ export const utterances = pgTable("utterances", {
     sessionId: uuid("session_id").references(() => specialtime.id, { onDelete: "cascade" }).notNull(), 
     child_utteranceText: text("child_utterance"),
     parent_utteranceText: text("parent_utterance").notNull(), 
-    skillCode: skillType('speaker').notNull(),  
+    skillCode: skillType('skillcode').notNull(),  
     timestamp: timestamp("timestamp").defaultNow(), 
   });
   

@@ -1,8 +1,11 @@
 "use server";
 
+import { SpecialTimePicker } from "@/components/specialtimeDatePicker";
 import { db } from "@/database/db";
 import { specialtime } from "@/database/schema";
 import { and, gte, lte, eq } from "drizzle-orm";
+import { format } from "date-fns";
+
 
 export async function fetchSpecialTimes(caregiverId: string) {
   const sessions = await db
@@ -22,6 +25,27 @@ export async function fetchCaregiverSessions(caregiverId: string, startDate: Dat
         eq(specialtime.caregiversId, caregiverId),
         gte(specialtime.createdAt, startDate),
         lte(specialtime.createdAt, endDate)
+      )
+    );
+
+  return sessions;
+}
+
+export async function fetchSpecialTimeByDate(caregiverId: string, date: Date) {
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+  
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  const sessions = await db
+    .select()
+    .from(specialtime)
+    .where(
+      and(
+        eq(specialtime.caregiversId, caregiverId),
+        gte(specialtime.createdAt, startOfDay),
+        lte(specialtime.createdAt, endOfDay)
       )
     );
 

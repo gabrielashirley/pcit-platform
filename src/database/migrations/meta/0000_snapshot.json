@@ -1,5 +1,5 @@
 {
-  "id": "e49b3b48-a3f5-407a-88b2-09d1ae0ed84b",
+  "id": "85753cf2-f8ab-4ccf-9c31-a28f62e1a769",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -532,9 +532,9 @@
           "primaryKey": false,
           "notNull": true
         },
-        "speaker": {
-          "name": "speaker",
-          "type": "speaker_type",
+        "skillcode": {
+          "name": "skillcode",
+          "type": "skilltype",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
@@ -571,12 +571,17 @@
     }
   },
   "enums": {
-    "public.speaker_type": {
-      "name": "speaker_type",
+    "public.skilltype": {
+      "name": "skilltype",
       "schema": "public",
       "values": [
-        "parent",
-        "child"
+        "LP",
+        "R",
+        "BD",
+        "Q",
+        "COM",
+        "CRI",
+        "NTA"
       ]
     }
   },

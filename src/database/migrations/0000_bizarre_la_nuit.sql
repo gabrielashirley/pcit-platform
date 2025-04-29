@@ -1,4 +1,4 @@
-CREATE TYPE "public"."speaker_type" AS ENUM('parent', 'child');--> statement-breakpoint
+CREATE TYPE "public"."skilltype" AS ENUM('LP', 'R', 'BD', 'Q', 'COM', 'CRI', 'NTA');--> statement-breakpoint
 CREATE TABLE "accounts" (
 	"id" text PRIMARY KEY NOT NULL,
 	"account_id" text NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE "utterances" (
 	"session_id" uuid NOT NULL,
 	"child_utterance" text,
 	"parent_utterance" text NOT NULL,
-	"speaker" "speaker_type" NOT NULL,
+	"skillcode" "skilltype" NOT NULL,
 	"timestamp" timestamp DEFAULT now()
 );
 --> statement-breakpoint

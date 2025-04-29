@@ -18,10 +18,10 @@ import { fetchSpecialTimes } from "@/app/actions/fetchSpecialTime";
 
 export function SpecialTimePicker({ 
   caregiverId, 
-  onSpecialTimesSelect 
+  onDateSelect 
 }: { 
   caregiverId: string;
-  onSpecialTimesSelect?: (sessions: any[]) => void;
+  onDateSelect?: (date: Date | undefined) => void;
 }) {
   const [date, setDate] = React.useState<Date>();
   const [open, setOpen] = React.useState(false);
@@ -37,23 +37,6 @@ export function SpecialTimePicker({
     specialTimes?.map((st) => format(new Date(st.createdAt), "yyyy-MM-dd"))
   );
 
-  const handleSelect = (pickedDate: Date | undefined) => {
-    if (!pickedDate) return;
-    const formatted = format(pickedDate, "yyyy-MM-dd");
-
-    if (allowedDates.has(formatted)) {
-      setDate(pickedDate);
-      setOpen(false);
-
-      const sessionsOnDate = specialTimes?.filter(
-        (st) => format(new Date(st.createdAt), "yyyy-MM-dd") === formatted
-      ) ?? []
-
-      if (onSpecialTimesSelect) {
-        onSpecialTimesSelect(sessionsOnDate);
-      }
-    }
-  };
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -77,7 +60,8 @@ export function SpecialTimePicker({
             const formatted = format(pickedDate, "yyyy-MM-dd");
             if (allowedDates.has(formatted)) {
               setDate(pickedDate);
-              setOpen(false); // Close after valid pick
+              setOpen(false);
+              onDateSelect?.(pickedDate);
             }
           }}
           disabled={(pickedDate) => {
