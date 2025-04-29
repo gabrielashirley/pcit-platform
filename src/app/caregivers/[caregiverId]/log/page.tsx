@@ -53,13 +53,12 @@ export default function SessionLogPage() {
           negativeTalk: session.negativeTalk,
         });
 
-        // ✅ Now fetch utterances based on session id
         const utterances = await fetchUtterance(session.id);
 
         const mappedLogs = utterances.map((u) => ({
-          child: u.child_utteranceText || "",     // adapt to your field names
-          parent: u.parent_utteranceText || "",   // adapt to your field names
-          label: u.skillCode || "",          // adapt to your field names
+          child: u.child_utteranceText || "",    
+          parent: u.parent_utteranceText || "",  
+          label: u.skillCode || "",        
         }));
 
         setLogs(mappedLogs);
@@ -84,24 +83,12 @@ export default function SessionLogPage() {
   }
 
   return (
-    <main className="p-8">
-      {/* Top nav */}
-      <div className="flex space-x-6 mb-6">
-        <Link
-          href={`./summary`}
-          className="text-2xl font-semibold text-gray-500 hover:text-blue-500"
-        >
-          Summary
-        </Link>
-        <Link
-          href={`./log}`}
-          className="text-2xl font-semibold text-blue-500"
-        >
-          Session Log
-        </Link>
+    <main className="sm:p-8">
+      <div className="flex flex-wrap gap-4 space-x-6 mb-6">
+        <Link href="./summary" className="text-sm sm:text-xl	font-semibold text-gray-500 hover:text-blue-500">Summary</Link>
+        <Link href="./log" className=" text-sm sm:text-xl font-semibold text-blue-500 ">Session Log</Link>
       </div>
 
-      {/* Date picker and Add button */}
       <div className="flex items-end gap-6 mb-6">
         <div>
           <SpecialTimePicker
@@ -110,9 +97,9 @@ export default function SessionLogPage() {
           />
         </div>
 
-        <Button className="ml-auto" variant="outline" onClick={handleAddNewEntry}>
+        {/* <Button className="ml-auto" variant="outline" onClick={handleAddNewEntry}>
           New Entry
-        </Button>
+        </Button> */}
       </div>
 
       {/* Skill Summary */}
@@ -131,9 +118,19 @@ export default function SessionLogPage() {
           </div>
         ))}
       </div>
+      
+      <div className="block sm:hidden">
+        {logs.map((log, index) => (
+          <div key={index} className="mb-4 p-3 border rounded">
+            <p><strong>Child:</strong> {log.child}</p>
+            <p><strong>Parent:</strong> {log.parent}</p>
+            <p><strong>Code:</strong> {log.label}</p>
+          </div>
+        ))}
+      </div>
 
-      {/* Logs Table */}
-      <div>
+
+      <div className="hidden sm:block">
         <Table>
           <TableCaption>DPICS based labelling</TableCaption>
           <TableHeader>

@@ -13,7 +13,7 @@ export async function Header() {
                     </Link>
                     <nav className="flex items-center gap-2">
                         <Link href="/caregivers">
-                            <Button variant="ghost">Logs</Button>
+                            <Button variant="ghost">Main</Button>
                         </Link>
                     </nav>
                 </div>

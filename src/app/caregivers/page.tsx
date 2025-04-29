@@ -15,14 +15,14 @@ export default function CaregiversPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">My Caregivers</h1>
+      <h1 className="text-2xl font-bold mb-6">Caregivers</h1>
 
       <div className="space-y-4">
         {data?.map((caregiver) => (
           <Link
           key={caregiver.id}
-          href={`/caregivers/${caregiver.id}/summary`} // <-- link to summary
-          className="block p-4 border rounded-lg shadow-md hover:bg-gray-100"
+          href={`/caregivers/${caregiver.id}/summary`}
+          className="block max-w-xl p-4 border rounded-lg shadow-md hover:bg-gray-100"
         >
           <p><strong>{caregiver.name}</strong></p>
         </Link>
