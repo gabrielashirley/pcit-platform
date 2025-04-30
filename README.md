@@ -1,32 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PCIT Platform
 
-##Setup 
-'''
-pnpm install
-'''
-## Setup
+A platform for Parent-Child Interaction Therapy (PCIT) professionals to manage their practice.
 
-First, run the development server:
+## Getting Started
 
+### Prerequisites
+
+- Node.js (v18 or later)
+- pnpm
+- Docker and Docker Compose
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/gabrielashirley/pcit-platform.git
+cd pcit-platform
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+pnpm install
+```
 
+3. Start the development environment:
+```bash
+pnpm dev
+```
 
+4. Start the database:
+```bash
+docker-compose up -d
+```
 
+5. Populate the database with test data:
+```bash
+psql -U pcituser -d pcitdb -h localhost -p 5432 -f scripts/seed.sql
+```
 
+This will create a test clinician account:
+- Email: sarah.johnson@pcit.com
+- Password: testtest
 
+The test data includes:
+- 1 clinician account
+- 2 caregivers
+- 2 special time sessions (one completed, one in progress)
+- 4 sample utterances
 
-## Deploy on Vercel
+### Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The development server will start on http://localhost:3000.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Building for Production
+
+```bash
+pnpm build
+```
+
+### Running Tests
+
+```bash
+pnpm test
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
