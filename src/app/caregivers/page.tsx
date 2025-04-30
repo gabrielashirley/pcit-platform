@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCaregivers } from "../actions/fetchCaregivers"; // adjust path
+import { fetchCaregivers } from "../actions/fetchCaregivers";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CaregiversPage() {
   const { data, isLoading, error } = useQuery({
@@ -10,24 +11,49 @@ export default function CaregiversPage() {
     queryFn: fetchCaregivers
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading caregivers</div>;
+  if (isLoading) {
+    return (
+      <section className="p-6">
+        <h1 className="text-2xl font-bold mb-6">Caregivers</h1>
+        <div className="space-y-4">
+          {[1, 2, 3].map((i) => (
+            <Skeleton key={i} className="h-16 w-full max-w-xl" />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="p-6">
+        <h1 className="text-2xl font-bold mb-6">Caregivers</h1>
+        <div className="p-4 border border-destructive rounded-lg bg-destructive/10">
+          <p className="text-destructive">Error loading caregivers. Please try again later.</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Caregivers</h1>
+    <section className="p-6" aria-labelledby="caregivers-heading">
+      <h1 id="caregivers-heading" className="text-2xl font-bold mb-6">Caregivers</h1>
 
-      <div className="space-y-4">
-        {data?.map((caregiver) => (
-          <Link
-          key={caregiver.id}
-          href={`/caregivers/${caregiver.id}/summary`}
-          className="block max-w-xl p-4 border rounded-lg shadow-md hover:bg-gray-100"
-        >
-          <p><strong>{caregiver.name}</strong></p>
-        </Link>
-        ))}
-      </div>
-    </div>
+      <nav aria-label="Caregivers list">
+        <ul className="space-y-4">
+          {data?.map((caregiver) => (
+            <li key={caregiver.id}>
+              <Link
+                href={`/caregivers/${caregiver.id}/summary`}
+                className="block max-w-xl p-4 border rounded-lg shadow-md hover:bg-gray-100 transition-colors"
+                aria-label={`View details for ${caregiver.name}`}
+              >
+                <p className="font-semibold">{caregiver.name}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
   );
 }
