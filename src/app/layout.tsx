@@ -3,8 +3,8 @@ import "./globals.css";
 // import "/Users/takadanana/Desktop/Startup/pcit-platform/styles/globals.css"
 import { Header } from "@/components/header"
 import { Providers } from "./providers"
-import { AppSidebar } from "@/components/app-sidebar"
 import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "PCIT Platform",
@@ -16,12 +16,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let session;
+  let session = null;
   try {
-    session = await auth();
+    const headersList = await headers();
+    // @ts-ignore - better-auth types are not properly exposed
+    const response = await auth.api.getSession({
+      headers: headersList
+    });
+    if (response && response.session) {
+      session = response;
+    }
   } catch (error) {
     console.error("Auth error:", error);
-    session = null;
   }
 
   return (
@@ -31,7 +37,6 @@ export default async function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <div className="flex flex-1">
-              {session?.user && <AppSidebar />}
               <main className="flex-1 overflow-y-auto">
                 <div className="container mx-auto p-4 md:p-6">
                   {children}
