@@ -61,7 +61,7 @@ VALUES
   ('8ca7b810-9dad-11d1-80b4-00c04fd430c8', false, '2025-05-06 15:00:00', '2025-05-06 15:19:00', 'lego, action figures', 7, 5, 6, 1, 0, 0, 0, 19.0, '2ca7b810-9dad-11d1-80b4-00c04fd430c8');
 
 -- Create utterances (focusing on Emily Davis's sessions)
-INSERT INTO utterances (id, specialtimesid, child_utterance, parent_utterance, utterance_type, created_at)
+INSERT INTO utterances (id, session_id, child_utterance, parent_utterance, skillCode, created_at)
 VALUES 
   -- Emily Davis's utterances
   ('1da7b810-9dad-11d1-80b4-00c04fd430c8', '1ba7b810-9dad-11d1-80b4-00c04fd430c8', 'I built a tower', 'That''s a tall tower you built', 'LP', '2025-05-01 10:00:00'),

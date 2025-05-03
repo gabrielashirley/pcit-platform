@@ -16,7 +16,9 @@ export function AuthView({ pathname }: { pathname: string }) {
 
     return (
         <main className="flex grow flex-col items-center justify-center gap-3 p-4">
+            <div className="w-full max-w-md">
             <AuthCard pathname={pathname} />
+            </div>
 
             <p
                 className={cn(
