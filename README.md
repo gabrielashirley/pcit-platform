@@ -48,6 +48,14 @@ The test data includes:
 - 2 special time sessions (one completed, one in progress)
 - 4 sample utterances
 
+6. For the invitation code from invite page, you can manually verified: 
+'''bash
+pnpm tsx scripts/verify.ts invitatoin_code "name_of_user"
+
+#example
+pnpm tsx scripts/verify.ts Qk-8vq "Adam Smith"
+'''
+
 ### Development
 
 The development server will start on http://localhost:3000.

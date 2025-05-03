@@ -1,5 +1,5 @@
 {
-  "id": "85753cf2-f8ab-4ccf-9c31-a28f62e1a769",
+  "id": "c4cdb362-e9a8-4595-9e00-5390252f52b7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -539,8 +539,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "timestamp": {
-          "name": "timestamp",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
@@ -555,6 +555,85 @@
           "tableTo": "specialtimes",
           "columnsFrom": [
             "session_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.one_time_codes": {
+      "name": "one_time_codes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caregivers_id": {
+          "name": "caregivers_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "used": {
+          "name": "used",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "one_time_codes_user_id_users_id_fk": {
+          "name": "one_time_codes_user_id_users_id_fk",
+          "tableFrom": "one_time_codes",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "one_time_codes_caregivers_id_caregivers_id_fk": {
+          "name": "one_time_codes_caregivers_id_caregivers_id_fk",
+          "tableFrom": "one_time_codes",
+          "tableTo": "caregivers",
+          "columnsFrom": [
+            "caregivers_id"
           ],
           "columnsTo": [
             "id"

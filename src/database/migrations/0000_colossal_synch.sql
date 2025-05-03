@@ -81,11 +81,22 @@ CREATE TABLE "utterances" (
 	"child_utterance" text,
 	"parent_utterance" text NOT NULL,
 	"skillcode" "skilltype" NOT NULL,
-	"timestamp" timestamp DEFAULT now()
+	"created_at" timestamp DEFAULT now()
+);
+--> statement-breakpoint
+CREATE TABLE "one_time_codes" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"code" text NOT NULL,
+	"user_id" text NOT NULL,
+	"caregivers_id" uuid,
+	"used" boolean DEFAULT false NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "caregivers" ADD CONSTRAINT "caregivers_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "specialtimes" ADD CONSTRAINT "specialtimes_caregiversid_caregivers_id_fk" FOREIGN KEY ("caregiversid") REFERENCES "public"."caregivers"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "utterances" ADD CONSTRAINT "utterances_session_id_specialtimes_id_fk" FOREIGN KEY ("session_id") REFERENCES "public"."specialtimes"("id") ON DELETE cascade ON UPDATE no action;
+ALTER TABLE "utterances" ADD CONSTRAINT "utterances_session_id_specialtimes_id_fk" FOREIGN KEY ("session_id") REFERENCES "public"."specialtimes"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "one_time_codes" ADD CONSTRAINT "one_time_codes_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "one_time_codes" ADD CONSTRAINT "one_time_codes_caregivers_id_caregivers_id_fk" FOREIGN KEY ("caregivers_id") REFERENCES "public"."caregivers"("id") ON DELETE cascade ON UPDATE no action;

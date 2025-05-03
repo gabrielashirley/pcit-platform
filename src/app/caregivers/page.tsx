@@ -14,7 +14,7 @@ export default function CaregiversPage() {
   if (isLoading) {
     return (
       <section className="p-6">
-        <h1 className="text-2xl font-bold mb-6">Caregivers</h1>
+        <h1 className="text-xl font-bold mb-6">Caregivers</h1>
         <div className="space-y-4">
           {[1, 2, 3].map((i) => (
             <Skeleton key={i} className="h-16 w-full max-w-xl" />
@@ -27,7 +27,7 @@ export default function CaregiversPage() {
   if (error) {
     return (
       <section className="p-6">
-        <h1 className="text-2xl font-bold mb-6">Caregivers</h1>
+        <h1 className="text-xl font-bold mb-6">Caregivers</h1>
         <div className="p-4 border border-destructive rounded-lg bg-destructive/10">
           <p className="text-destructive">Error loading caregivers. Please try again later.</p>
         </div>
@@ -45,7 +45,7 @@ export default function CaregiversPage() {
             <li key={caregiver.id}>
               <Link
                 href={`/caregivers/${caregiver.id}/summary`}
-                className="block max-w-xl p-4 border rounded-lg shadow-md hover:bg-gray-100 transition-colors"
+                className="block max-w-2xl p-4 border rounded-lg shadow-md hover:bg-gray-100 hover:text-blue-500 transition-colors"
                 aria-label={`View details for ${caregiver.name}`}
               >
                 <p className="font-semibold">{caregiver.name}</p>

@@ -4,9 +4,6 @@ import {caregivers} from "./caregivers"
 import { relations } from "drizzle-orm"
 import { createSelectSchema, createInsertSchema } from "drizzle-zod"
 import { z } from "zod"
-import { sep } from "path"
-import { duration } from "drizzle-orm/gel-core"
-import { scheduler } from "timers/promises"
 
 export const specialtime = pgTable("specialtimes", {
     id: uuid("id").primaryKey().defaultRandom(),
@@ -39,25 +36,11 @@ export const caregiversToSpecialTimeRelations = relations(specialtime, ({ one })
     }),
 }))
 
-
 export const selecCaregiversSpecialTimeSchema = createSelectSchema(caregivers);
 export type CaregiverFromSpecialTime = z.infer<typeof selecCaregiversSpecialTimeSchema>;
 
 export const selectSpecialTimeSchema = createSelectSchema(specialtime);
 export type SpecialTime = z.infer<typeof selectSpecialTimeSchema>;
-
-// export const insertSpecialTimeSchema = createInsertSchema(specialtime, {
-//     praise: (schema: z.ZodString) => schema.nonempty("Title cannot be empty"),
-//     reflect: (schema: z.ZodString) => schema.nonempty("Skill cannot be empty"),
-//     describe: (schema: z.ZodString) => schema.nonempty("Skill cannot be empty"),
-//     question: (schema: z.ZodString) => schema.nonempty("Skill cannot be empty"),
-//     command: (schema: z.ZodString) => schema.nonempty("Skill cannot be empty"),
-//     criticism: (schema: z.ZodString) => schema.nonempty("Skill cannot be empty"),
-//     negativeTalk: (schema: z.ZodString) => schema.nonempty("Skill cannot be empty"),
-//     duration: (schema: z.ZodString) => schema.nonempty("Duration cannot be empty"),
-
-// })
-// export type NewTodo = z.infer<typeof insertSpecialTimeSchema>;
 
 export default {
   specialtime,

@@ -16,12 +16,14 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialTimes } from "@/app/actions/fetchSpecialTime";
 
-export function SpecialTimePicker({ 
-  caregiverId, 
-  onDateSelect 
-}: { 
+export function SpecialTimePicker({
+  caregiverId,
+  onDateSelect,
+  selectedDate,
+}: {
   caregiverId: string;
   onDateSelect?: (date: Date | undefined) => void;
+  selectedDate?: Date;
 }) {
   const [date, setDate] = React.useState<Date>();
   const [open, setOpen] = React.useState(false);
@@ -30,6 +32,13 @@ export function SpecialTimePicker({
     queryKey: ["specialtimes", caregiverId],
     queryFn: () => fetchSpecialTimes(caregiverId),
   });
+
+  // ✅ Sync internal state with external date
+  React.useEffect(() => {
+    if (selectedDate) {
+      setDate(selectedDate);
+    }
+  }, [selectedDate]);
 
   if (isLoading) return <div>Loading...</div>;
 
