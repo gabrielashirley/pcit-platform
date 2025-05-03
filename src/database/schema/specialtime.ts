@@ -45,5 +45,3 @@ export default {
   specialtime,
   caregivers,
 };
-
-export default schema;
