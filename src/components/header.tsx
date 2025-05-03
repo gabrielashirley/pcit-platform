@@ -16,11 +16,11 @@ export function Header() {
                         PCIT Clinicians Platform
                     </Link>
                     {session?.user && (
-                        <nav className="flex items-center gap-2">
-                            <Link href="/caregivers">
-                                <Button variant="ghost">Main</Button>
-                            </Link>
-                        </nav>
+                    <nav className="flex items-center gap-2">
+                        <Link href="/caregivers">
+                            <Button variant="ghost">Main</Button>
+                        </Link>
+                    </nav>
                     )}
                 </div>
                 <UserButton />
