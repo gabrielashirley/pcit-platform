@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { SpecialTimePicker } from "@/components/specialtimeDatePicker";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -78,10 +77,6 @@ export default function SessionLogPage() {
     loadSession();
   }, [date, caregiverId]);
 
-  function handleAddNewEntry() {
-    setLogs([...logs, { child: "", parent: "", label: "" }]);
-  }
-
   return (
     <main className="sm:p-8">
       <div className="flex flex-wrap gap-4 space-x-6 mb-6">
@@ -96,10 +91,6 @@ export default function SessionLogPage() {
             onDateSelect={(pickedDate) => setDate(pickedDate)}
           />
         </div>
-
-        {/* <Button className="ml-auto" variant="outline" onClick={handleAddNewEntry}>
-          New Entry
-        </Button> */}
       </div>
 
       {/* Skill Summary */}

@@ -1,15 +1,10 @@
-import { boolean, pgTable, text, integer, real,  timestamp, uuid } from "drizzle-orm/pg-core"
-
+import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
 import {specialtime} from "./specialtime"
 import { relations } from "drizzle-orm"
-import { createSelectSchema, createInsertSchema } from "drizzle-zod"
-import { z } from "zod"
 import { pgEnum } from "drizzle-orm/pg-core";
-
 
 // export const speakerType = pgEnum('speaker_type', ['parent', 'child']);
 export const skillType = pgEnum('skilltype', ['LP','R', 'BD', 'Q', 'COM', 'CRI', 'NTA' ]);
-
 
 export const utterances = pgTable("utterances", {
     id: uuid("id").primaryKey().defaultRandom(),  // Unique utterance ID

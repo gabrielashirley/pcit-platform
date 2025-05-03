@@ -1,12 +1,8 @@
-import { boolean, pgTable, text, integer, real,  timestamp, uuid } from "drizzle-orm/pg-core"
-
+import { boolean, pgTable, text, integer, real, timestamp, uuid } from "drizzle-orm/pg-core"
 import {caregivers} from "./caregivers"
 import { relations } from "drizzle-orm"
-import { createSelectSchema, createInsertSchema } from "drizzle-zod"
+import { createSelectSchema } from "drizzle-zod"
 import { z } from "zod"
-import { sep } from "path"
-import { duration } from "drizzle-orm/gel-core"
-import { scheduler } from "timers/promises"
 
 export const specialtime = pgTable("specialtimes", {
     id: uuid("id").primaryKey().defaultRandom(),
@@ -39,7 +35,6 @@ export const caregiversToSpecialTimeRelations = relations(specialtime, ({ one })
     }),
 }))
 
-
 export const selecCaregiversSpecialTimeSchema = createSelectSchema(caregivers);
 export type CaregiverFromSpecialTime = z.infer<typeof selecCaregiversSpecialTimeSchema>;
 
@@ -59,7 +54,9 @@ export type SpecialTime = z.infer<typeof selectSpecialTimeSchema>;
 // })
 // export type NewTodo = z.infer<typeof insertSpecialTimeSchema>;
 
-export default {
+const schema = {
   specialtime,
   caregivers,
 };
+
+export default schema;

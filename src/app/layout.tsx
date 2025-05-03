@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 // import "/Users/takadanana/Desktop/Startup/pcit-platform/styles/globals.css"
 import { Header } from "@/components/header"
-import type { ReactNode } from "react"
 import { Providers } from "./providers"
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import { SidebarWrapper } from "@/components/sidebar_wrapper"; // NEW
 import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {

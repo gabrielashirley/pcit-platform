@@ -2,9 +2,7 @@
 
 import { db } from "@/database/db";
 import { utterances } from "@/database/schema";
-import { and, gte, lte, eq } from "drizzle-orm";
-import { format } from "date-fns";
-
+import { eq } from "drizzle-orm";
 
 export async function fetchUtterance(specialtimeId: string) {
   const sessions = await db
