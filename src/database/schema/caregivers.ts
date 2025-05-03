@@ -1,4 +1,4 @@
-import { boolean, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
+import { pgTable, text, uuid } from "drizzle-orm/pg-core"
 
 import { users } from "./auth"
 import { relations } from "drizzle-orm"
@@ -35,7 +35,9 @@ export const insertCaregiverSchema = createInsertSchema(caregivers, {
   });
 export type NewTodo = z.infer<typeof insertCaregiverSchema>;
 
-export default {
-    users,
-    caregivers,
-  };
+const schema = {
+  users,
+  caregivers,
+};
+
+export default schema;

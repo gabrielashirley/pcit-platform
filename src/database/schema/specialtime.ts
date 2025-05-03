@@ -1,8 +1,7 @@
-import { boolean, pgTable, text, integer, real,  timestamp, uuid } from "drizzle-orm/pg-core"
-
+import { boolean, pgTable, text, integer, real, timestamp, uuid } from "drizzle-orm/pg-core"
 import {caregivers} from "./caregivers"
 import { relations } from "drizzle-orm"
-import { createSelectSchema, createInsertSchema } from "drizzle-zod"
+import { createSelectSchema } from "drizzle-zod"
 import { z } from "zod"
 
 export const specialtime = pgTable("specialtimes", {
@@ -46,3 +45,5 @@ export default {
   specialtime,
   caregivers,
 };
+
+export default schema;

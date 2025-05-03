@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 // import "/Users/takadanana/Desktop/Startup/pcit-platform/styles/globals.css"
 import { Header } from "@/components/header"
-import type { ReactNode } from "react"
 import { Providers } from "./providers"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { auth } from "@/lib/auth";

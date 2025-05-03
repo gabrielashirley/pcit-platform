@@ -92,10 +92,6 @@ export default function SessionLogPage() {
     loadSession();
   }, [date, caregiverId]);
 
-  function handleAddNewEntry() {
-    setLogs([...logs, { child: "", parent: "", label: "" }]);
-  }
-
   useEffect(() => {
     async function initializeDate() {
       if (!caregiverId || date) return;
