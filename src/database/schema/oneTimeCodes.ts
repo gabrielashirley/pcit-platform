@@ -1,8 +1,6 @@
-import { boolean, pgTable, text, integer, real,  timestamp, uuid } from "drizzle-orm/pg-core"
+import { boolean, pgTable, text,  timestamp, uuid } from "drizzle-orm/pg-core"
 import { users } from "./auth"
 import { relations } from "drizzle-orm"
-import { createSelectSchema, createInsertSchema } from "drizzle-zod"
-import { z } from "zod"
 import {caregivers} from "./caregivers"
 
 export const oneTimeCodes = pgTable("one_time_codes", {

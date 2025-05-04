@@ -3,8 +3,6 @@ import "./globals.css";
 // import "/Users/takadanana/Desktop/Startup/pcit-platform/styles/globals.css"
 import { Header } from "@/components/header"
 import { Providers } from "./providers"
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "PCIT Platform",

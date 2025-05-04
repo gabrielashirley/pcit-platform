@@ -2,13 +2,11 @@ import { db } from "@/database/db";
 import { caregivers } from "@/database/schema/caregivers";
 import { oneTimeCodes } from "@/database/schema/oneTimeCodes";
 import { eq } from "drizzle-orm";
-import { nanoid } from "nanoid";
 
 async function run() {
 
   const [, , code, caregiverName] = process.argv;
 
-  // 1. Find the one-time code entry
   const [invite] = await db
     .select()
     .from(oneTimeCodes)
@@ -27,7 +25,6 @@ async function run() {
   const clinicianId = invite.clinicianId;
   console.log(`ℹ️ Code belongs to clinician: ${clinicianId}`);
 
-  // 2. Create a new caregiver
   const [newCaregiver] = await db
     .insert(caregivers)
     .values({
@@ -36,7 +33,6 @@ async function run() {
     })
     .returning();
 
-  // 3. Update the one-time code with the caregiver's ID
   await db
     .update(oneTimeCodes)
     .set({
