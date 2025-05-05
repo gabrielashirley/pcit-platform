@@ -71,17 +71,17 @@ export async function createDPICS(
     negativeTalk: number;
   }
 ) {
-  // const result = await db.insert(specialtime).values({
-  //   caregiversId: caregiverId,
-  //   createdAt: date,
-  //   updatedAt: date,
-  //   praise: skills.praise,
-  //   describe: skills.describe,
-  //   reflect: skills.reflection,
-  //   command: skills.command,
-  //   question: skills.question,
-  //   negativeTalk: skills.negativeTalk,
-  // });
+  await db.insert(specialtime).values({
+    caregiversId: caregiverId,
+    createdAt: date,
+    updatedAt: date,
+    praise: skills.praise,
+    describe: skills.describe,
+    reflect: skills.reflection,
+    command: skills.command,
+    question: skills.question,
+    negativeTalk: skills.negativeTalk,
+  });
 }
 
 export async function updateSpecialTime(
