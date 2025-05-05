@@ -9,9 +9,9 @@ export const skillType = pgEnum('skilltype', ['LP','R', 'BD', 'Q', 'COM', 'CRI',
 export const utterances = pgTable("utterances", {
     id: uuid("id").primaryKey().defaultRandom(),  // Unique utterance ID
     sessionId: uuid("session_id").references(() => specialtime.id, { onDelete: "cascade" }).notNull(), 
-    child_utteranceText: text("child_utterance"),
-    parent_utteranceText: text("parent_utterance").notNull(), 
-    skillCode: skillType('skillcode').notNull(),  
+    child_utterance: text("child_utterance"),
+    parent_utterance: text("parent_utterance").notNull(), 
+    skillcode: skillType('skillcode').notNull(),  
     created_at: timestamp("created_at").defaultNow(), 
   });
   

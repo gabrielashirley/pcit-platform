@@ -69,9 +69,9 @@ export default function SessionLogPage() {
       const utterances = await fetchUtterance(session.id);
 
       const mappedLogs = utterances.map((u) => ({
-        child: u.child_utteranceText || "",    
-        parent: u.parent_utteranceText || "",  
-        label: u.skillCode || "",        
+        child: u.child_utterance || "",    
+        parent: u.parent_utterance || "",  
+        label: u.skillcode || "",        
       }));
 
       setLogs(mappedLogs);
