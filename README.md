@@ -49,12 +49,16 @@ The test data includes:
 - 4 sample utterances
 
 6. For the invitation code from invite page, you can manually verified: 
-'''bash
+```bash
+#for local
 pnpm tsx scripts/verify.ts invitatoin_code "name_of_user"
+
+#for production
+NODE_ENV=production pnpm tsx scripts/verify.ts J7whUv "John Smith"
 
 #example
 pnpm tsx scripts/verify.ts Qk-8vq "Adam Smith"
-'''
+```
 
 ### Development
 
