@@ -12,7 +12,7 @@ export const utterances = pgTable("utterances", {
     child_utterance: text("child_utterance"),
     parent_utterance: text("parent_utterance").notNull(), 
     skillcode: skillType('skillcode').notNull(),  
-    created_at: timestamp("created_at").defaultNow(), 
+    // created_at: timestamp("created_at").defaultNow(), 
   });
   
   export const utterancesRelations = relations(utterances, ({ one }) => ({
